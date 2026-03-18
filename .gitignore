@@ -1,0 +1,30 @@
+# Credentials
+Jsons/
+.env
+.env.*
+.streamlit/secrets.toml
+.mcp.json
+
+# Generated data
+output/
+*.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Meta Ads CLI (Node.js) — reemplazado por Python directo
+meta-ads-cli/node_modules/

@@ -1,0 +1,47 @@
+# Andesmar — Turismo / Viajes
+# Plataformas: Google Ads + Meta Ads
+# Moneda: ARS | Gasto mensual: ~ARS 2.5M
+
+client_name: "Andesmar"
+active: true
+
+# IDs de cuentas publicitarias (para data fetcher directo via API)
+google_ads_id: "3945728157"
+meta_ads_id: "160070906181703"
+
+# Google Sheets con data de cada plataforma
+sheets:
+  google_ads:
+    sheet_id: ""
+    tabs:
+      campaigns: "Campaigns"
+      ad_groups: "Ad Groups"
+      ads: "Ads"
+      keywords: "Keywords"
+      daily_metrics: "Daily Metrics"
+  meta_ads:
+    sheet_id: "16dm38b8Wx7Dv5oWzDVBMgsrEe1L7md6G"
+    tabs:
+      campaigns: "Campaigns"
+      adsets: "Ad Sets"
+      ads: "Ads"
+      daily_metrics: "Daily Metrics"
+
+# Umbrales de alerta (en porcentaje)
+thresholds:
+  cpa_increase_alert: 20
+  ctr_decrease_alert: 15
+  roas_minimum: 3.0
+  cvr_decrease_alert: 20
+  cpc_increase_alert: 25
+  impression_share_min: 40
+  budget_utilization_min: 70
+  creative_fatigue_days: 30
+
+# Objetivos del cliente
+goals:
+  primary_kpi: "CPA"
+  target_cpa: 5000.00
+  target_roas: 4.0
+  monthly_budget: 2500000
+  currency: "ARS"

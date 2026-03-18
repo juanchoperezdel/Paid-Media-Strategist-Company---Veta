@@ -1,0 +1,58 @@
+# Configuración de ejemplo para un cliente
+# Copiar este archivo y renombrar para cada cliente nuevo
+
+client_name: "Cliente Ejemplo"
+active: true
+
+# IDs de cuentas publicitarias (para data fetcher directo via API)
+google_ads_id: ""     # ID de cuenta Google Ads (sin guiones, ej: "1234567890")
+meta_ads_id: ""       # ID de cuenta Meta Ads (ej: "act_1234567890")
+
+# Google Sheets con data de cada plataforma
+# Los sheet_id se obtienen de la URL del spreadsheet: docs.google.com/spreadsheets/d/{SHEET_ID}/
+sheets:
+  google_ads:
+    sheet_id: "TU_SHEET_ID_GOOGLE_ADS"
+    tabs:
+      campaigns: "Campaigns"
+      ad_groups: "Ad Groups"
+      ads: "Ads"
+      keywords: "Keywords"
+      daily_metrics: "Daily Metrics"
+  meta_ads:
+    sheet_id: "TU_SHEET_ID_META_ADS"
+    tabs:
+      campaigns: "Campaigns"
+      adsets: "Ad Sets"
+      ads: "Ads"
+      daily_metrics: "Daily Metrics"
+  ga4:
+    sheet_id: "TU_SHEET_ID_GA4"
+    tabs:
+      traffic: "Traffic Sources"
+      conversions: "Conversions"
+      events: "Events"
+
+# Umbrales de alerta (en porcentaje)
+thresholds:
+  cpa_increase_alert: 20       # Alerta si CPA sube más del 20%
+  ctr_decrease_alert: 15       # Alerta si CTR baja más del 15%
+  roas_minimum: 3.0            # ROAS mínimo aceptable
+  cvr_decrease_alert: 20       # Alerta si CVR baja más del 20%
+  cpc_increase_alert: 25       # Alerta si CPC sube más del 25%
+  impression_share_min: 40     # Impression share mínimo (%)
+  budget_utilization_min: 70   # Utilización mínima de presupuesto (%)
+  creative_fatigue_days: 30    # Días antes de considerar fatiga creativa
+
+# Objetivos del cliente
+goals:
+  primary_kpi: "CPA"           # KPI principal: CPA, ROAS, CPL, etc.
+  target_cpa: 50.00            # Objetivo de CPA en USD/ARS
+  target_roas: 4.0             # Objetivo de ROAS
+  monthly_budget: 10000        # Presupuesto mensual total
+  currency: "USD"
+
+# Schedule override (opcional - si no se define, usa el global)
+# schedule:
+#   risk_check: "daily"
+#   full_report: "weekly"

@@ -1,0 +1,80 @@
+# Veta Strategist AI - Configuración Global
+
+# Claude API
+anthropic:
+  api_key: "${ANTHROPIC_API_KEY}"  # Usar variable de entorno
+  models:
+    default: "claude-sonnet-4-6"
+    advanced: "claude-opus-4-6"
+    fast: "claude-haiku-4-5-20251001"
+  max_tokens: 4096
+
+# Google Sheets
+google_sheets:
+  credentials_file: "Jsons/veta-drive-claude-code.json"
+  scopes:
+    - "https://spreadsheets.google.com/feeds"
+    - "https://www.googleapis.com/auth/drive"
+
+# Frecuencias de ejecución (en horas)
+schedule:
+  # Platform Experts (daily-ish)
+  google_expert: 24          # Diario
+  meta_expert: 24            # Diario
+  # Transversal Agents
+  risk_detection: 24         # Diario
+  data_auditor: 168          # Semanal
+  creative_intel: 336        # Quincenal
+  # Reports
+  full_report: 168           # Semanal
+  # Legacy (backward compat)
+  ads_detector: 72           # Cada 3 días
+  historical_analyst: 168    # Semanal
+
+# Google Drive
+drive:
+  root_folder_id: ""  # ID de la carpeta "Veta" en Drive (se crea automáticamente si está vacío)
+
+# Web App
+web:
+  password: "veta2026"  # Contraseña para el equipo (cambiar en producción)
+
+# Chat on-demand
+chat:
+  backend: "openrouter"
+  openrouter_api_key: "${OPENROUTER_API_KEY}"
+  openrouter_model: "nvidia/nemotron-3-super-120b-a12b:free"  # 120B params, gratis via OpenRouter
+
+# Lifecycle Analysis
+lifecycle:
+  platform: "meta"           # Solo Meta por ahora (Google Ads no tiene freq por ad)
+  conclusions_months: 6       # Meses de conclusiones accesibles para el chat
+  data_retention_months: 12   # Meses de data cruda en SQLite (rolling)
+
+# Reportes
+reports:
+  output_dir: "output"
+  formats:
+    - "markdown"
+    - "pdf"
+  pdf_template: "src/reports/templates/report_template.html"
+
+# Human-in-the-loop
+human_approval:
+  enabled: true               # Todas las acciones requieren aprobación humana
+  auto_execute: false          # NUNCA ejecutar acciones automáticamente
+
+# Meta Ads API
+meta_ads:
+  access_token: "${META_ACCESS_TOKEN}"
+  api_version: "v21.0"
+
+# Google Ads API
+google_ads:
+  developer_token: "${GOOGLE_ADS_DEVELOPER_TOKEN}"
+  login_customer_id: "5971963548"
+
+# Logging
+logging:
+  level: "INFO"
+  file: "output/veta_strategist.log"

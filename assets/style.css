@@ -1,0 +1,501 @@
+/* ═══════════════════════════════════════════════════════════
+   Veta Strategist AI — Dashboard Theme
+   Inspirado en diseño moderno con cards, gradientes pastel
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Google Font ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ─── Variables ───────────────────────────────────────────── */
+:root {
+    --bg-main: #f0f2f5;
+    --bg-card: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --border-light: #e5e7eb;
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --gradient-blue: linear-gradient(135deg, #dbeafe, #e0e7ff);
+    --gradient-pink: linear-gradient(135deg, #fce7f3, #fde2e4);
+    --gradient-green: linear-gradient(135deg, #d1fae5, #cffafe);
+    --gradient-purple: linear-gradient(135deg, #ede9fe, #e0e7ff);
+    --gradient-orange: linear-gradient(135deg, #ffedd5, #fef3c7);
+    --gradient-highlight: linear-gradient(135deg, #c7d2fe, #ddd6fe);
+}
+
+/* ─── Global ──────────────────────────────────────────────── */
+html, body, [data-testid="stAppViewContainer"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* ─── Main content area ───────────────────────────────────── */
+[data-testid="stAppViewContainer"] > section > div {
+    padding-top: 1rem;
+}
+
+/* ─── Sidebar ─────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+    background: var(--bg-card) !important;
+    border-right: 1px solid var(--border-light) !important;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdown"] h1 {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.02em;
+}
+
+[data-testid="stSidebar"] hr {
+    border-color: var(--border-light) !important;
+    margin: 0.75rem 0 !important;
+}
+
+/* Sidebar radio buttons — clean pill style */
+[data-testid="stSidebar"] [role="radiogroup"] {
+    gap: 4px !important;
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label {
+    background: transparent !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 8px 12px !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label:hover {
+    background: var(--bg-main) !important;
+}
+
+[data-testid="stSidebar"] [role="radiogroup"] label[data-checked="true"],
+[data-testid="stSidebar"] [role="radiogroup"] label[aria-checked="true"] {
+    background: var(--gradient-blue) !important;
+    font-weight: 600 !important;
+}
+
+/* ─── Headers ─────────────────────────────────────────────── */
+h1, h2, h3 {
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.02em !important;
+}
+
+h1 { font-weight: 700 !important; }
+h2 { font-weight: 600 !important; font-size: 1.4rem !important; }
+h3 { font-weight: 600 !important; font-size: 1.1rem !important; }
+
+/* ─── Streamlit Metric cards ──────────────────────────────── */
+[data-testid="stMetric"] {
+    background: var(--bg-card);
+    border-radius: var(--radius-md) !important;
+    padding: 20px 16px !important;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-testid="stMetric"]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+[data-testid="stMetric"] [data-testid="stMetricLabel"] {
+    font-size: 0.8rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+}
+
+[data-testid="stMetric"] [data-testid="stMetricValue"] {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────── */
+[data-testid="stButton"] > button[kind="primary"],
+button[kind="primary"] {
+    background: var(--text-primary) !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    padding: 0.5rem 1.5rem !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stButton"] > button[kind="primary"]:hover,
+button[kind="primary"]:hover {
+    background: #2d2d4e !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(26, 26, 46, 0.3) !important;
+}
+
+[data-testid="stButton"] > button[kind="secondary"],
+button[kind="secondary"] {
+    border-radius: var(--radius-sm) !important;
+    border: 1px solid var(--border-light) !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* ─── Inputs & Selects ────────────────────────────────────── */
+[data-testid="stSelectbox"] > div,
+[data-testid="stTextInput"] > div > div {
+    border-radius: var(--radius-sm) !important;
+    border-color: var(--border-light) !important;
+}
+
+[data-testid="stTextInput"] input {
+    border-radius: var(--radius-sm) !important;
+}
+
+/* ─── Expanders ───────────────────────────────────────────── */
+[data-testid="stExpander"] {
+    background: var(--bg-card);
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+}
+
+[data-testid="stExpander"] summary {
+    font-weight: 500 !important;
+}
+
+/* ─── DataFrames / Tables ─────────────────────────────────── */
+[data-testid="stDataFrame"] {
+    border-radius: var(--radius-md) !important;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+/* ─── Tabs ────────────────────────────────────────────────── */
+[data-testid="stTabs"] [role="tablist"] {
+    gap: 8px;
+}
+
+[data-testid="stTabs"] [role="tab"] {
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+    font-weight: 500 !important;
+    padding: 8px 16px !important;
+}
+
+/* ─── Alerts (success, warning, error, info) ──────────────── */
+[data-testid="stAlert"] {
+    border-radius: var(--radius-md) !important;
+    border: none !important;
+    box-shadow: var(--shadow-card);
+}
+
+/* ─── Chat messages ───────────────────────────────────────── */
+[data-testid="stChatMessage"] {
+    border-radius: var(--radius-md) !important;
+    padding: 16px !important;
+    margin-bottom: 8px !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Dividers ────────────────────────────────────────────── */
+hr {
+    border-color: var(--border-light) !important;
+    margin: 1rem 0 !important;
+}
+
+/* ─── Custom card classes (via st.markdown HTML) ──────────── */
+.veta-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-light);
+    margin-bottom: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.veta-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.veta-card-gradient-blue {
+    background: var(--gradient-blue);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border: none;
+    margin-bottom: 16px;
+}
+
+.veta-card-gradient-pink {
+    background: var(--gradient-pink);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border: none;
+    margin-bottom: 16px;
+}
+
+.veta-card-gradient-green {
+    background: var(--gradient-green);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border: none;
+    margin-bottom: 16px;
+}
+
+.veta-card-gradient-purple {
+    background: var(--gradient-purple);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border: none;
+    margin-bottom: 16px;
+}
+
+.veta-card-gradient-orange {
+    background: var(--gradient-orange);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border: none;
+    margin-bottom: 16px;
+}
+
+/* Card metric large number */
+.veta-metric-big {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 4px;
+}
+
+.veta-metric-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.veta-metric-sublabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* Card title */
+.veta-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+/* Progress bar custom */
+.veta-progress-container {
+    margin-bottom: 12px;
+}
+
+.veta-progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.veta-progress-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.veta-progress-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.veta-progress-bar {
+    height: 8px;
+    background: var(--border-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.veta-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.veta-progress-fill.blue { background: #4A90D9; }
+.veta-progress-fill.green { background: #34d399; }
+.veta-progress-fill.orange { background: #fb923c; }
+.veta-progress-fill.red { background: #f87171; }
+.veta-progress-fill.purple { background: #a78bfa; }
+
+/* Report card in grid */
+.veta-report-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-light);
+    margin-bottom: 12px;
+    transition: transform 0.2s ease;
+}
+
+.veta-report-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.veta-report-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.veta-report-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Alert cards */
+.veta-alert-high {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 8px;
+    border-left: 4px solid #ef4444;
+}
+
+.veta-alert-medium {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 8px;
+    border-left: 4px solid #f59e0b;
+}
+
+.veta-alert-low {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 8px;
+    border-left: 4px solid #3b82f6;
+}
+
+/* Welcome header */
+.veta-welcome {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.veta-welcome-sub {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+/* Badge / tag */
+.veta-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.veta-badge-blue { background: #dbeafe; color: #1e40af; }
+.veta-badge-green { background: #d1fae5; color: #065f46; }
+.veta-badge-red { background: #fee2e2; color: #991b1b; }
+.veta-badge-yellow { background: #fef3c7; color: #92400e; }
+.veta-badge-purple { background: #ede9fe; color: #5b21b6; }
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* ─── Login page centering ────────────────────────────────── */
+.veta-login-container {
+    max-width: 400px;
+    margin: 10vh auto;
+    padding: 40px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.veta-login-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.veta-login-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.veta-login-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+/* ─── Container / section wrappers ────────────────────────── */
+[data-testid="stVerticalBlock"] > [data-testid="stVerticalBlockBorderWrapper"] {
+    border-radius: var(--radius-md) !important;
+}
+
+/* Make st.container with border look like cards */
+[data-testid="stVerticalBlockBorderWrapper"][data-testid] {
+    border-radius: var(--radius-md) !important;
+    border-color: var(--border-light) !important;
+}
+
+/* ─── Download button ─────────────────────────────────────── */
+[data-testid="stDownloadButton"] > button {
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+}
+
+/* ─── Spinner ─────────────────────────────────────────────── */
+[data-testid="stSpinner"] {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: var(--shadow-card);
+}
