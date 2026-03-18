@@ -1,0 +1,15 @@
+client_name: "Usados Surmotors"
+active: true
+google_ads_id: ""
+meta_ads_id: "1771911510200411"
+currency: "ARS"
+
+thresholds:
+  cpa_increase_alert: 20
+  ctr_decrease_alert: 15
+  roas_minimum: 3.0
+  cvr_decrease_alert: 20
+  cpc_increase_alert: 25
+  impression_share_min: 40
+  budget_utilization_min: 70
+  creative_fatigue_days: 30
