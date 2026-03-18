@@ -80,11 +80,12 @@ def process_client(
             logger.info(f"[{client_name}] Data guardada localmente")
 
             # Guardar en Drive
-            try:
-                fetcher.save_to_drive(drive, client_name, data)
-                logger.info(f"[{client_name}] Data guardada en Drive")
-            except Exception as e:
-                logger.warning(f"[{client_name}] No se pudo subir a Drive: {e}")
+            if drive:
+                try:
+                    fetcher.save_to_drive(drive, client_name, data)
+                    logger.info(f"[{client_name}] Data guardada en Drive")
+                except Exception as e:
+                    logger.warning(f"[{client_name}] No se pudo subir a Drive: {e}")
 
             # Guardar en SQLite y preparar lifecycle data para el pipeline
             meta_daily = data.get("meta_ads", {}).get("ad_daily")
@@ -131,17 +132,19 @@ def process_client(
             logger.error(f"[{client_name}] Error en análisis: {result['error']}")
             return
 
-        # Paso 3: Subir reporte a Drive
-        logger.info(f"[{client_name}] Subiendo reporte a Drive...")
+        # Paso 3: Generar reporte y subir a Drive
         gen = MarkdownReportGenerator()
         temp_path = f"output/temp_{client_name}.md"
         md_content = gen.generate(result, temp_path)
 
-        date_str = datetime.now().strftime("%Y-%m-%d")
-        title = f"Reporte Semanal — {client_name} — {date_str}"
-        doc_url = drive.upload_report_as_doc(client_name, md_content, title)
-
-        logger.info(f"[{client_name}] Reporte disponible: {doc_url}")
+        if drive:
+            logger.info(f"[{client_name}] Subiendo reporte a Drive...")
+            date_str = datetime.now().strftime("%Y-%m-%d")
+            title = f"Reporte Semanal — {client_name} — {date_str}"
+            doc_url = drive.upload_report_as_doc(client_name, md_content, title)
+            logger.info(f"[{client_name}] Reporte disponible: {doc_url}")
+        else:
+            logger.info(f"[{client_name}] Reporte generado localmente (Drive no disponible)")
 
         # Limpiar temp
         if os.path.exists(temp_path):
@@ -166,10 +169,13 @@ def main():
     settings = load_settings(args.config)
 
     # Inicializar servicios
-    drive = DriveClient(
-        credentials_file=settings["google_sheets"]["credentials_file"],
-        root_folder_id=settings.get("drive", {}).get("root_folder_id"),
-    )
+    try:
+        from src.web.secrets_helper import get_google_credentials
+        creds = get_google_credentials()
+        drive = DriveClient(credentials=creds, root_folder_id=settings.get("drive", {}).get("root_folder_id"))
+    except (FileNotFoundError, Exception) as e:
+        logger.warning(f"Google credentials no disponibles, Drive deshabilitado: {e}")
+        drive = None
     fetcher = DataFetcher()
     strategist = VetaStrategist(args.config)
 
